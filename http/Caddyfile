@@ -1,0 +1,21 @@
+http://torrent.picosong.com:2095 {
+  log stdout
+  errors stdout
+
+  # Make sure this username/pass matches that of transmission.
+  basicauth / admin pass
+
+  root /transmission
+  browse /downloads
+
+  # 'transmission' is the hostname alias set up by docker
+  proxy / transmission:9091 {
+    transparent
+    except /downloads/
+  }
+
+  header / {
+    # Do not shown own server and proxied app's server
+    -Server
+  }
+}
