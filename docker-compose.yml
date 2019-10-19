@@ -10,10 +10,6 @@ services:
       # Do not expose port 9091; will proxy it via http.
       - 51413:51413
       - 51413:51413/udp
-    environment:
-      # Make sure to also change the username/pass in Caddyfile.
-      - USER=admin
-      - PASS=pass
 
   http:
     image: abiosoft/caddy:1.0.3-no-stats

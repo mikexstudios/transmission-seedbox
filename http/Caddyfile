@@ -3,7 +3,7 @@ http://torrent.picosong.com:2095 {
   errors stdout
 
   # Make sure this username/pass matches that of transmission.
-  basicauth / admin pass
+  basicauth / {$USER} {$PASS}
 
   root /transmission
   browse /downloads
