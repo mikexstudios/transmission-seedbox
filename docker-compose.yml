@@ -10,12 +10,16 @@ services:
       # Do not expose port 9091; will proxy it via http.
       - 51413:51413
       - 51413:51413/udp
+    environment:
+      - USER=admin
+      - PASS=pass
 
   http:
     image: abiosoft/caddy:1.0.3-no-stats
     volumes:
       # /srv is default sites root from caddy container.
-      - ./transmission:/srv
+      # We want to directly mount downloads/ because it might be a symlink.
+      - ./transmission/downloads:/srv/downloads
       - ./http/Caddyfile:/etc/Caddyfile
     ports:
       - 2095:2095

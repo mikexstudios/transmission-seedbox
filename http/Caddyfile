@@ -1,11 +1,12 @@
-http://torrent.picosong.com:2095 {
+http://example.com:2095 {
   log stdout
   errors stdout
 
   # Make sure this username/pass matches that of transmission.
-  basicauth / {$USER} {$PASS}
+  basicauth / admin pass
 
-  root /transmission
+  # /srv already exists in the Caddy docker image as a serving folder.
+  root /srv
   browse /downloads
 
   # 'transmission' is the hostname alias set up by docker
