@@ -1,9 +1,10 @@
 http://example.com:2095 {
+  # Send logs to docker logging.
   log stdout
   errors stdout
 
   # Make sure this username/pass matches that of transmission.
-  basicauth / admin pass
+  basicauth / ${USER} ${PASS}
 
   # /srv already exists in the Caddy docker image as a serving folder.
   root /srv

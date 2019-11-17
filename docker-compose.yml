@@ -1,7 +1,7 @@
 version: "3.7"
 services:
   transmission:
-    image: linuxserver/transmission
+    image: linuxserver/transmission:2.94-r2-ls35
     volumes:
       - ./transmission/config:/config
       - ./transmission/downloads:/downloads
@@ -17,9 +17,12 @@ services:
   http:
     image: abiosoft/caddy:1.0.3-no-stats
     volumes:
-      # /srv is default sites root from caddy container.
-      # We want to directly mount downloads/ because it might be a symlink.
+      - ./Caddyfile:/etc/Caddyfile
+      # Mount the downloads/ folder into caddy's default sites root (/srv) so
+      # that we can retrieve completed downloads via http.
       - ./transmission/downloads:/srv/downloads
-      - ./http/Caddyfile:/etc/Caddyfile
     ports:
-      - 2095:2095
+      - 80:80
+    environment:
+      - USER=admin
+      - PASS=pass
