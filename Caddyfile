@@ -1,10 +1,10 @@
-http://example.com:2095 {
+:80 {
   # Send logs to docker logging.
   log stdout
   errors stdout
 
   # Make sure this username/pass matches that of transmission.
-  basicauth / ${USER} ${PASS}
+  basicauth / {$USER} {$PASS}
 
   # /srv already exists in the Caddy docker image as a serving folder.
   root /srv
@@ -13,7 +13,7 @@ http://example.com:2095 {
   # 'transmission' is the hostname alias set up by docker
   proxy / transmission:9091 {
     transparent
-    except /downloads/
+    except /downloads
   }
 
   header / {
