@@ -1,7 +1,7 @@
 version: "3.7"
 services:
   transmission:
-    image: linuxserver/transmission:2.94-r2-ls35
+    image: linuxserver/transmission:latest
     volumes:
       - ./transmission/config:/config
       - ./transmission/downloads:/downloads
@@ -13,7 +13,7 @@ services:
     env_file: .env
 
   http:
-    image: abiosoft/caddy:1.0.3-no-stats
+    image: abiosoft/caddy:latest
     volumes:
       - ./Caddyfile:/etc/Caddyfile
       # Mount the downloads/ folder into caddy's default sites root (/srv) so
